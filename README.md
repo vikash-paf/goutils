@@ -13,7 +13,7 @@ go get github.com/vikash-paf/goutils
 
 ## Packages
 
-### 🧱 Core Data Structures & Collections
+### Core Data Structures & Collections
 
 #### `slice`
 A robust collection of slice manipulation functions.
@@ -41,7 +41,7 @@ Simple, generic data pairing.
 - **`ds.Stack[T]`** / **`ds.Queue[T]`**: Standard queues and stacks optimized for memory management.
 - **`cache.LRU[K, V]`**: A concurrent-safe Least Recently Used Cache.
 
-### 🛡️ Resilience & Concurrency
+### Resilience & Concurrency
 
 #### `syncx`
 Advanced concurrency primitives and worker pools.
@@ -57,7 +57,7 @@ Fault-tolerance patterns.
 Rate limiting utilities.
 - **`TokenBucket`**: Industry-standard synchronous and asynchronous (`Wait`) rate limiting.
 
-### 🛠️ Control Flow & Utilities
+### Control Flow & Utilities
 
 #### `control` & `opt`
 Flow control, Optional types, and error handling.
