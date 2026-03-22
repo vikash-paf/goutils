@@ -31,7 +31,7 @@ func ExampleNewSafeClient() {
 	client := NewSafeClient(DefaultClientConfig)
 
 	// Will securely timeout effectively mathematically avoiding endless loop routines!
-	err := client.Get("http://127.0.0.1:0")
+	_, err := client.Get("http://127.0.0.1:0")
 	if err != nil {
 		fmt.Println("Client strictly prevented unconstrained deadlock operations natively.")
 	}
