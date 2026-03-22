@@ -4,15 +4,17 @@ import (
 	"fmt"
 	"github.com/vikash-paf/goutils/fsx"
 	"os"
+	"path/filepath"
 )
 
 func ExampleExists() {
-	fmt.Println(fsx.Exists("/tmp/non-existent-file"))
+	path := filepath.Join(os.TempDir(), "non-existent-file-goutils")
+	fmt.Println(fsx.Exists(path))
 	// Output: false
 }
 
 func ExampleReadFileLines() {
-	path := "/tmp/test.txt"
+	path := filepath.Join(os.TempDir(), "test-goutils.txt")
 	_ = os.WriteFile(path, []byte("line1\nline2"), 0644)
 	defer os.Remove(path)
 
@@ -22,7 +24,7 @@ func ExampleReadFileLines() {
 }
 
 func ExampleEnsureDir() {
-	path := "/tmp/test-dir"
+	path := filepath.Join(os.TempDir(), "test-dir-goutils")
 	err := fsx.EnsureDir(path)
 	fmt.Println(err == nil)
 	os.RemoveAll(path)

@@ -2,6 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/vikash-paf/goutils.svg)](https://pkg.go.dev/github.com/vikash-paf/goutils)
 [![Go Report Card](https://goreportcard.com/badge/github.com/vikash-paf/goutils)](https://goreportcard.com/report/github.com/vikash-paf/goutils)
+[![CI](https://github.com/vikash-paf/goutils/actions/workflows/ci.yml/badge.svg)](https://github.com/vikash-paf/goutils/actions/workflows/ci.yml)
 
 `goutils` is a modern, zero-dependency, generic utility library for Go 1.21+. It eliminates boilerplate by providing highly-tested, idiomatic utilities for collections, synchronization, error handling, and data structures.
 

@@ -1,15 +1,15 @@
 package fsx
 
 import (
-	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 )
 
 func TestFsx(t *testing.T) {
 	tmpDir := os.TempDir()
-	testDir := tmpDir + "/fsx_test"
-	testFile := testDir + "/test.txt"
+	testDir := filepath.Join(tmpDir, "fsx_test")
+	testFile := filepath.Join(testDir, "test.txt")
 
 	defer os.RemoveAll(testDir)
 
@@ -36,9 +36,3 @@ func TestFsx(t *testing.T) {
 	}
 }
 
-func ExampleExists() {
-	if Exists("/tmp") {
-		fmt.Println("Exists")
-	}
-	// Output: Exists
-}
