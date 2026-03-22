@@ -66,3 +66,13 @@ broker.Publish("UserCreated")
 msg := <-sub
 fmt.Println("Received event:", msg)
 ```
+
+## ShardedMap
+A highly concurrent map partitioned mathematically across 32 mutual-exclusion buckets to radically reduce lock contention to nearly 0. Best used for giant in-memory dictionaries handling millions of rapid operations. Optimized specifically for string keys using zero-allocation `.Seed` hashing.
+```go
+cache := syncx.NewShardedMap[int](32) // 32 independent shards
+cache.Set("alice", 999)
+
+val, ok := cache.Get("alice")
+cache.Delete("alice")
+```
