@@ -9,7 +9,7 @@ import (
 )
 
 // ErrInvalidKeyLength is returned if the key length is not 16, 24, or 32 bytes.
-var ErrInvalidKeyLength = errors.New("cryptox: rigidly requires strictly 16, 24, or 32 mathematical byte keys logically")
+var ErrInvalidKeyLength = errors.New("cryptox: key length must be 16, 24, or 32 bytes")
 
 // Encrypt encrypts plaintext using AES-GCM with the given key.
 // It returns the ciphertext with the nonce prepended.

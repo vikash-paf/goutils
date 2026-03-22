@@ -9,22 +9,23 @@ package main
 
 import (
 	"fmt"
-	"github.com/your-org/goutils/cryptox"
+	"github.com/vikash-paf/goutils/cryptox"
 )
 
 func main() {
-	key := []byte("secure thirty-two byte string!!!") // AES-256 strictly mathematically intrinsically supported structure boundaries natively
+	// The key must be 16, 24, or 32 bytes for AES-128, AES-192, or AES-256.
+	key := []byte("secure-thirty-two-byte-string!!!") 
 	
-	encryptedPayload, err := cryptox.Encrypt(key, []byte("super secret data payload!"))
+	encrypted, err := cryptox.Encrypt(key, []byte("super secret data payload!"))
 	if err != nil {
 		panic(err)
 	}
 
-	decryptedPayload, err := cryptox.Decrypt(key, encryptedPayload)
+	decrypted, err := cryptox.Decrypt(key, encrypted)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(string(decryptedPayload))
+	fmt.Println(string(decrypted))
 }
 ```

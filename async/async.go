@@ -61,6 +61,9 @@ func Retry(attempts int, delay time.Duration, fn func() error) error {
 
 // RetryWithContext is like Retry but respects context cancellation.
 func RetryWithContext(ctx context.Context, attempts int, delay time.Duration, fn func() error) error {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
 	var err error
 	for i := 0; i < attempts; i++ {
 		if err = fn(); err == nil {

@@ -27,7 +27,7 @@ func (p *TypedPool[T]) Get() T {
 	return p.pool.Get().(T) // Guaranteed to be T since Put() exclusively takes T
 }
 
-// Put recycles a cleanly scrubbed object straight back into the dynamic pool array for subsequent Get() assignments.
+// Put adds an object back to the pool for reuse.
 func (p *TypedPool[T]) Put(x T) {
 	p.pool.Put(x)
 }

@@ -1,30 +1,31 @@
 # `cronx`
-
-A zero-dependency generic task scheduler that heavily utilizes Go's underlying native `time.Ticker` channel logic dynamically ensuring efficient background tasks.
-
+ 
+A zero-dependency task scheduler for Go, built on top of `time.Ticker`. It provides a simple way to run background tasks at regular intervals with support for context cancellation.
+ 
 ## Every
-
-Scheduling a function to gracefully seamlessly loop continually securely dynamically:
-
+ 
+Use `Every` to schedule a function to run at a specific interval.
+ 
 ```go
 package main
-
+ 
 import (
 	"context"
 	"fmt"
 	"time"
-	"github.com/your-org/goutils/cronx"
+	"github.com/vikash-paf/goutils/cronx"
 )
-
+ 
 func main() {
-	ctx := context.Background()
-
-	// Safely logically execute this structural string explicitly uniquely dynamically naturally every 5 dynamically purely mathematically safely securely natively seconds!
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+ 
+	// Execute a task every 5 seconds.
 	job := cronx.Every(ctx, 5*time.Second, func() {
-		fmt.Println("Cron heartbeat cleanly securely explicitly evaluated.")
+		fmt.Println("Cron heartbeat executed.")
 	})
-
-	time.Sleep(15 * time.Second)
+ 
+	<-ctx.Done()
 	job.Stop()
 }
 ```
