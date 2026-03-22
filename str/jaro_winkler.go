@@ -1,7 +1,5 @@
 package str
 
-import "math"
-
 // Jaro returns the Jaro similarity between two strings, ranging from 0.0 (no match) to 1.0 (exact match).
 // It accounts for matching characters and transpositions within a dynamic window.
 func Jaro(s1, s2 string) float64 {
