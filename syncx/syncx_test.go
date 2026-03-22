@@ -21,7 +21,7 @@ func TestDebounce(t *testing.T) {
 
 	wg.Add(1)
 	// Call rapidly, should only execute once after 50ms
-	for i := 0; i < 5; i++ {
+	for range 5 {
 		debounced()
 		time.Sleep(10 * time.Millisecond)
 	}
