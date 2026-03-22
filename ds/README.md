@@ -43,3 +43,17 @@ var s ds.Stack[int]
 s.Push(42)
 val, ok := s.Pop()
 ```
+
+### BloomFilter
+A space-efficient probabilistic data structure that is used to test whether an element is a member of a set. Useful for reducing expensive database lookups.
+```go
+// Create a Bloom filter for 10,000 items with a 1% false positive rate
+bf := ds.NewBloomFilter(10000, 0.01)
+
+bf.AddString("user_123")
+
+// False positives are possible; false negatives are not.
+if bf.ContainsString("user_123") {
+    fmt.Println("User might exist")
+}
+```
