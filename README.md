@@ -1,7 +1,7 @@
 # goutils
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/vikash/goutils.svg)](https://pkg.go.dev/github.com/vikash/goutils)
-[![Go Report Card](https://goreportcard.com/badge/github.com/vikash/goutils)](https://goreportcard.com/report/github.com/vikash/goutils)
+[![Go Reference](https://pkg.go.dev/badge/github.com/vikash-paf/goutils.svg)](https://pkg.go.dev/github.com/vikash-paf/goutils)
+[![Go Report Card](https://goreportcard.com/badge/github.com/vikash-paf/goutils)](https://goreportcard.com/report/github.com/vikash-paf/goutils)
 
 `goutils` is a modern, zero-dependency, generic utility library for Go 1.21+. It provides heavily requested functional programming features, pointer manipulation helpers, map utilities, native sets, and string transformers in an idiomatic and typesafe manner.
 
@@ -10,7 +10,7 @@ By leveraging Go generics, `goutils` eliminates the need for reflection, keeping
 ## Installation
 
 ```bash
-go get github.com/vikash/goutils
+go get github.com/vikash-paf/goutils
 ```
 
 ## Packages
