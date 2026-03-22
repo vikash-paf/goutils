@@ -37,6 +37,22 @@ func TestIterx(t *testing.T) {
 	}
 }
 
+func TestGroupBy(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5, 6}
+	seq := FromSlice(nums)
+
+	grouped := GroupBy(seq, func(n int) string {
+		if n%2 == 0 {
+			return "even"
+		}
+		return "odd"
+	})
+
+	if len(grouped["even"]) != 3 || len(grouped["odd"]) != 3 {
+		t.Errorf("GroupBy failed: %v", grouped)
+	}
+}
+
 func ExampleMap() {
 	nums := []int{1, 2, 3}
 	seq := FromSlice(nums)
