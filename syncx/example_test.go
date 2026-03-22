@@ -3,35 +3,42 @@ package syncx_test
 import (
 	"fmt"
 	"github.com/vikash-paf/goutils/syncx"
+	"sync"
 	"sync/atomic"
 	"time"
 )
 
 func ExampleBatcher() {
-	var processed atomic.Int32
+	var wg sync.WaitGroup
+	wg.Add(1)
+
 	b := syncx.NewBatcher(2, 50*time.Millisecond, func(batch []int) {
-		processed.Add(int32(len(batch)))
+		fmt.Printf("Processed batch of size %d\n", len(batch))
+		wg.Done()
 	})
 
 	b.Add(1)
 	b.Add(2) // Triggers flush
-	
-	time.Sleep(10 * time.Millisecond) // Wait for async processing
-	fmt.Println(processed.Load())
-	// Output: 2
+
+	wg.Wait()
+	// Output: Processed batch of size 2
 }
 
 func ExampleDebounce() {
+	var wg sync.WaitGroup
+	wg.Add(1)
 	var count atomic.Int32
+
 	debounced := syncx.Debounce(50*time.Millisecond, func() {
 		count.Add(1)
+		wg.Done()
 	})
 
 	debounced()
 	debounced()
 	debounced()
 
-	time.Sleep(100 * time.Millisecond)
+	wg.Wait()
 	fmt.Println(count.Load())
 	// Output: 1
 }
