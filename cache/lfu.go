@@ -73,10 +73,10 @@ func (c *LFU[K, V]) Set(key K, value V) {
 
 	if len(c.cache) >= c.capacity {
 		minList := c.freqs[c.minFreq]
-		back := minList.Back()
-		if back != nil {
-			minList.Remove(back)
-			delete(c.cache, back.Value.(*lfuItem[K, V]).key)
+		front := minList.Front()
+		if front != nil {
+			minList.Remove(front)
+			delete(c.cache, front.Value.(*lfuItem[K, V]).key)
 		}
 	}
 

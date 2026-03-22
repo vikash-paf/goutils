@@ -1,6 +1,7 @@
 package str
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -60,7 +61,7 @@ func ExampleJaroWinkler() {
 	sim := JaroWinkler("martha", "marhta")
 	// Thresholding helps handle typos effectively
 	if sim > 0.9 {
-		println("High similarity")
+		fmt.Println("High similarity")
 	}
 	// Output: High similarity
 }
