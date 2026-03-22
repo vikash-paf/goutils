@@ -1,4 +1,10 @@
-// Package control provides utility functions for flow control and error handling.
+// Package control provides utility functions for flow control and error handling,
+// such as a ternary operator (If) and the Must pattern.
+//
+// Usage:
+//
+//	val := control.If(condition, "true", "false")
+//	db := control.Must(sql.Open("postgres", connStr))
 package control
 
 // If is a generic ternary operator. It returns trueVal if the condition is true,

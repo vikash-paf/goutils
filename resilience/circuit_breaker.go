@@ -1,4 +1,12 @@
-// Package resilience provides fault-tolerance patterns like Circuit Breaker.
+// Package resilience provides fault-tolerance patterns to prevent cascading system failures,
+// such as the Circuit Breaker pattern.
+//
+// Usage:
+//
+//	cb := resilience.NewCircuitBreaker(3, 5*time.Second)
+//	err := cb.Execute(func() error {
+//	    return http.Get("http://flaky-service.com")
+//	})
 package resilience
 
 import (

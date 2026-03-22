@@ -1,4 +1,10 @@
-// Package tuple provides a generic Pair structure and associated utility functions.
+// Package tuple provides a generic Pair structure and associated utility functions
+// for working with pairs of values.
+//
+// Usage:
+//
+//	p := tuple.NewPair("age", 30)
+//	fmt.Println(p.Left, p.Right)
 package tuple
 
 // Pair represents a tuple of two values of potentially different types.

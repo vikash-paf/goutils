@@ -1,4 +1,9 @@
 // Package syncx provides generic concurrency primitives like Debounce, Throttle, and Batcher.
+//
+// Usage:
+//
+//	debounced := syncx.Debounce(100*time.Millisecond, fn)
+//	debounced()
 package syncx
 
 import (

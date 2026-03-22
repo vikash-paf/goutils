@@ -2,6 +2,7 @@ package rate
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"time"
 )
@@ -57,4 +58,28 @@ func TestTokenBucketWaitTimeout(t *testing.T) {
 	if err == nil {
 		t.Error("Expected Wait to fail due to context timeout")
 	}
+}
+
+func ExampleTokenBucket() {
+	// Capacity 2, adds 1 token every 100ms
+	tb := NewTokenBucket(2, 100*time.Millisecond)
+
+	// Consume tokens
+	fmt.Println(tb.Allow()) // true
+	fmt.Println(tb.Allow()) // true
+	fmt.Println(tb.Allow()) // false (empty)
+
+	// Wait for a token
+	ctx, cancel := context.WithTimeout(context.Background(), 150*time.Millisecond)
+	defer cancel()
+
+	if err := tb.Wait(ctx); err == nil {
+		fmt.Println("Allowed after waiting")
+	}
+
+	// Output:
+	// true
+	// true
+	// false
+	// Allowed after waiting
 }

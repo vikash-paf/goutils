@@ -1,3 +1,11 @@
+// Package slice provides a robust collection of slice manipulation functions,
+// such as Map, Filter, Reduce, and Unique.
+//
+// Usage:
+//
+//	items := []int{1, 2, 3}
+//	mapped := slice.Map(items, func(i int) int { return i * 2 })
+//	filtered := slice.Filter(items, func(i int) bool { return i > 1 })
 package slice
 
 // Map iterates over a slice and applies a function to each element,

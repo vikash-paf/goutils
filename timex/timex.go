@@ -1,4 +1,10 @@
-// Package timex provides utility functions for time manipulation.
+// Package timex provides utility functions for time manipulation,
+// including business day calculations and day boundaries.
+//
+// Usage:
+//
+//	start := timex.StartOfDay(time.Now())
+//	future := timex.AddBusinessDays(time.Now(), 5)
 package timex
 
 import "time"

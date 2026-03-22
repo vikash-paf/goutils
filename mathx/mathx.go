@@ -1,4 +1,10 @@
-// Package mathx provides generic math operations for numeric types.
+// Package mathx provides generic math operations for numeric types,
+// such as Sum, Average, and Clamp.
+//
+// Usage:
+//
+//	total := mathx.Sum([]int{1, 2, 3})
+//	clamped := mathx.Clamp(150, 0, 100)
 package mathx
 
 import "cmp"

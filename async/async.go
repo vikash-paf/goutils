@@ -1,4 +1,11 @@
-// Package async provides generic utility functions for concurrent programming.
+// Package async provides generic utility functions for concurrent programming,
+// such as parallel mapping and retry logic with backoff.
+//
+// Usage:
+//
+//	results := async.MapAsync(urls, func(url string) string {
+//	    return fetch(url)
+//	}, 5)
 package async
 
 import (

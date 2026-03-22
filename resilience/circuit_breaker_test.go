@@ -2,6 +2,7 @@ package resilience
 
 import (
 	"errors"
+	"fmt"
 	"testing"
 	"time"
 )
@@ -76,4 +77,37 @@ func TestExecuteGen(t *testing.T) {
 	if err != ErrCircuitOpen || val != 0 {
 		t.Errorf("Expected 0, ErrCircuitOpen; got %v, %v", val, err)
 	}
+}
+
+func ExampleCircuitBreaker() {
+	// Opens the circuit after 2 consecutive failures, retries after 100ms
+	cb := NewCircuitBreaker(2, 100*time.Millisecond)
+
+	// A function that fails
+	flakyFunc := func() error {
+		return errors.New("temporary failure")
+	}
+
+	// Trigger failures
+	_ = cb.Execute(flakyFunc)
+	_ = cb.Execute(flakyFunc)
+
+	// Now the circuit is open
+	err := cb.Execute(flakyFunc)
+	if err == ErrCircuitOpen {
+		fmt.Println("Circuit is open")
+	}
+
+	// Wait for reset timeout
+	time.Sleep(110 * time.Millisecond)
+
+	// Now it's in Half-Open state and will allow one call
+	_ = cb.Execute(func() error {
+		fmt.Println("Allowed one call in Half-Open state")
+		return nil
+	})
+
+	// Output:
+	// Circuit is open
+	// Allowed one call in Half-Open state
 }

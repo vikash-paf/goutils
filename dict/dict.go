@@ -1,4 +1,11 @@
-// Package dict provides generic utility functions for map/dictionary manipulation.
+// Package dict provides generic utility functions for map/dictionary manipulation,
+// such as merging maps or extracting keys and values.
+//
+// Usage:
+//
+//	m := map[string]int{"a": 1, "b": 2}
+//	keys := dict.Keys(m)
+//	merged := dict.Merge(m1, m2)
 package dict
 
 import maps "maps"

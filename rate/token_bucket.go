@@ -1,4 +1,12 @@
-// Package rate provides rate limiting utilities.
+// Package rate provides rate limiting utilities, such as a Token Bucket implementation
+// for both synchronous and asynchronous (Wait) rate limiting.
+//
+// Usage:
+//
+//	tb := rate.NewTokenBucket(10, time.Second)
+//	if tb.Allow() {
+//	    // process request
+//	}
 package rate
 
 import (

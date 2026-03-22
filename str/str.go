@@ -1,4 +1,10 @@
-// Package str provides utility functions for strings.
+// Package str provides utility functions for strings, such as
+// case conversion and truncation.
+//
+// Usage:
+//
+//	reversed := str.Reverse("hello")
+//	camel := str.ToCamelCase("hello_world")
 package str
 
 import (

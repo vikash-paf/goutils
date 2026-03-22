@@ -1,6 +1,7 @@
 package timex
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -72,4 +73,21 @@ func TestAddBusinessDays(t *testing.T) {
 	if resBack.Day() != 19 || resBack.Weekday() != time.Thursday {
 		t.Errorf("AddBusinessDays(-1) = %v, want Thursday 19th", resBack)
 	}
+}
+
+func ExampleStartOfDay() {
+	dt := time.Date(2023, 10, 18, 12, 34, 56, 0, time.UTC)
+	sod := StartOfDay(dt)
+	fmt.Println(sod.Format("15:04:05"))
+	// Output: 00:00:00
+}
+
+func ExampleAddBusinessDays() {
+	// 2023-10-20 is a Friday
+	fri := time.Date(2023, 10, 20, 12, 0, 0, 0, time.UTC)
+
+	// Add 2 business days -> Tuesday
+	tue := AddBusinessDays(fri, 2)
+	fmt.Println(tue.Weekday())
+	// Output: Tuesday
 }

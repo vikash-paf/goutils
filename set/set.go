@@ -1,4 +1,13 @@
-// Package set provides a generic, native-feeling Set data structure.
+// Package set provides a generic, native-feeling Set data structure with standard
+// mathematical set operations like Union, Intersection, and Difference.
+//
+// Usage:
+//
+//	s := set.New(1, 2, 3)
+//	s.Add(4)
+//	if s.Contains(2) {
+//	    s.Remove(1)
+//	}
 package set
 
 // Set represents a collection of unique elements.

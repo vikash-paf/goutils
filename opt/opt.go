@@ -1,4 +1,12 @@
 // Package opt provides a generic Optional type to represent values that may or may not exist.
+// It is inspired by Rust's Option type and encourages explicit error/null handling.
+//
+// Usage:
+//
+//	val := opt.Some(42)
+//	if val.IsSome() {
+//	    fmt.Println(val.Unwrap())
+//	}
 package opt
 
 // Opt represents an optional value of type T.

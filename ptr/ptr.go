@@ -1,4 +1,11 @@
-// Package ptr provides generic utility functions for pointer manipulation.
+// Package ptr provides generic utility functions for pointer manipulation,
+// making it easier to safely handle pointers in Go.
+//
+// Usage:
+//
+//	p := ptr.Of("hello")
+//	val := ptr.Val(p)
+//	fallback := ptr.ValOrDefault(nilPtr, "default")
 package ptr
 
 // Of returns a pointer to the given value.

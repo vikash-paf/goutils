@@ -1,4 +1,13 @@
-// Package cache provides generic caching primitives.
+// Package cache provides memory-optimized, thread-safe caching primitives,
+// such as a Least Recently Used (LRU) Cache.
+//
+// Usage:
+//
+//	c := cache.NewLRU[string, int](100)
+//	c.Set("alice", 30)
+//	if age, ok := c.Get("alice"); ok {
+//	    fmt.Println("Alice's age:", age)
+//	}
 package cache
 
 import (

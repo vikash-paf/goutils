@@ -1,4 +1,11 @@
-// Package ds provides common data structures.
+// Package ds provides common data structures, such as Stacks, Queues,
+// Priority Queues, and Ring Buffers.
+//
+// Usage:
+//
+//	s := ds.Stack[int]{}
+//	s.Push(1)
+//	val, ok := s.Pop()
 package ds
 
 // Stack is a generic LIFO (Last-In-First-Out) data structure.
