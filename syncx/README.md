@@ -37,3 +37,17 @@ debounced := syncx.Debounce(100*time.Millisecond, myFunc)
 // Throttle: Execute at most once per 100ms
 throttled := syncx.Throttle(100*time.Millisecond, myFunc)
 ```
+
+## Semaphore
+A lightweight counting semaphore used to limit the number of concurrent operations accessing a constrained resource.
+```go
+sem := syncx.NewSemaphore(10) // Allow up to 10 concurrent requests
+
+// Block until a slot is free or context is canceled
+if err := sem.Acquire(ctx); err != nil {
+    return err
+}
+defer sem.Release()
+
+doWork()
+```
