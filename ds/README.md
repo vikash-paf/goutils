@@ -57,3 +57,17 @@ if bf.ContainsString("user_123") {
     fmt.Println("User might exist")
 }
 ```
+
+### UnionFind
+A generic disjoint-set data structure. It groups comparable elements into distinct components and provides near $O(1)$ operations to merge components and check connectivity. It features path compression and union-by-rank.
+```go
+uf := ds.NewUnionFind[string]()
+uf.Add("A")
+uf.Add("B")
+
+uf.Union("A", "B")
+
+if uf.Connected("A", "B") {
+    fmt.Println("Nodes A and B are connected!")
+}
+```
