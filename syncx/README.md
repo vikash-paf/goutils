@@ -51,3 +51,18 @@ defer sem.Release()
 
 doWork()
 ```
+
+## PubSub
+A flexible, in-memory Publish/Subscribe broker that automatically drops messages for slow consumers to prevent system deadlocks.
+```go
+broker := syncx.NewPubSub[string]()
+defer broker.Close()
+
+// Create a subscriber with a channel buffer of 10
+sub := broker.Subscribe(10)
+
+broker.Publish("UserCreated")
+
+msg := <-sub
+fmt.Println("Received event:", msg)
+```
