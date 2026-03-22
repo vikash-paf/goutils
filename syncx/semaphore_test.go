@@ -57,7 +57,7 @@ func TestSemaphore_Concurrency(t *testing.T) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			sem.Acquire(context.Background())
+			_ = sem.Acquire(context.Background())
 			current := atomic.AddInt32(&active, 1)
 			if current > 3 {
 				t.Errorf("too many active routines: %d", current)
@@ -74,7 +74,7 @@ func ExampleSemaphore() {
 	sem := NewSemaphore(2) // Max 2 concurrent workers
 
 	for i := 0; i < 3; i++ {
-		sem.Acquire(context.Background())
+		_ = sem.Acquire(context.Background())
 		go func(id int) {
 			defer sem.Release()
 			// Simulate work

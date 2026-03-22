@@ -8,9 +8,9 @@ func TestDAG(t *testing.T) {
 	dag.AddNode("B", "Task B")
 	dag.AddNode("C", "Task C")
 
-	dag.AddEdge("A", "B")
-	dag.AddEdge("B", "C")
-	dag.AddEdge("A", "C")
+	_ = dag.AddEdge("A", "B")
+	_ = dag.AddEdge("B", "C")
+	_ = dag.AddEdge("A", "C")
 
 	order, err := dag.TopologicalSort()
 	if err != nil {
@@ -23,7 +23,7 @@ func TestDAG(t *testing.T) {
 	}
 
 	// Test cycle
-	dag.AddEdge("C", "A")
+	_ = dag.AddEdge("C", "A")
 	_, err = dag.TopologicalSort()
 	if err == nil {
 		t.Error("Expected error due to cycle, got nil")
