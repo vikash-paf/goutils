@@ -71,3 +71,14 @@ if uf.Connected("A", "B") {
     fmt.Println("Nodes A and B are connected!")
 }
 ```
+
+### FenwickTree (Binary Indexed Tree)
+A generic data structure for computing prefix sums and updating elements in an array, both in $O(\log N)$ time. Suitable for any numeric type (e.g., `int`, `float64`).
+```go
+ft := ds.NewFenwickTree[int](5)
+ft.Add(0, 10)
+ft.Add(2, 5)
+
+sum := ft.PrefixSum(3) // 15
+sumRange := ft.RangeSum(1, 4) // 5
+```
