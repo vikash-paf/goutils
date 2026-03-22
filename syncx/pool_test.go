@@ -2,6 +2,7 @@ package syncx
 
 import (
 	"testing"
+	"time"
 )
 
 func TestPool(t *testing.T) {
@@ -33,10 +34,12 @@ func TestPool(t *testing.T) {
 
 func TestPoolShutdown(t *testing.T) {
 	pool := NewPool[int, int](2, func(job int) int {
+		time.Sleep(20 * time.Millisecond)
 		return job
 	})
 
 	pool.Submit(1)
+	time.Sleep(5 * time.Millisecond) // Give worker time to start
 	pool.Shutdown()
 	pool.Submit(2) // Shouldn't block indefinitely
 
