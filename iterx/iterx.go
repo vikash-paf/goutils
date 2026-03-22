@@ -85,3 +85,13 @@ func Take[T any](seq iter.Seq[T], n int) iter.Seq[T] {
 		}
 	}
 }
+
+// GroupBy collects elements from an iterator into a map grouped by a selector function.
+func GroupBy[K comparable, V any](seq iter.Seq[V], keySelector func(V) K) map[K][]V {
+	m := make(map[K][]V)
+	for v := range seq {
+		k := keySelector(v)
+		m[k] = append(m[k], v)
+	}
+	return m
+}
