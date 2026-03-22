@@ -1,20 +1,24 @@
 # `resilience`
 
-The `resilience` package provides fault-tolerance patterns to prevent cascading system failures.
+The `resilience` package provides patterns for maintaining system stability and preventing cascading failures in distributed environments.
 
-## CircuitBreaker
-Prevents repeated execution of an operation that is likely to fail. It transitions through `StateClosed` (normal), `StateOpen` (failing, rejecting calls), and `StateHalfOpen` (testing recovery).
-
-### Usage
+## Retry (with Exponential Backoff & Jitter)
+A resilient retry mechanism that protects downstream services from thundering herds by employing exponential backoff and randomized jitter.
 ```go
-// Opens the circuit after 3 consecutive failures, retries after 5 seconds.
-cb := resilience.NewCircuitBreaker(3, 5*time.Second)
+ctx := context.Background()
 
-err := cb.Execute(func() error {
-    return http.Get("http://flaky-service.com")
+config := resilience.RetryConfig{
+    MaxRetries: 3,
+    BaseDelay:  100 * time.Millisecond,
+    MaxDelay:   2 * time.Second,
+    Jitter:     true, // Adds up to 50% random jitter to delays
+}
+
+err := resilience.Retry(ctx, config, func(ctx context.Context) error {
+    return makeNetworkCall(ctx)
 })
 
-if err == resilience.ErrCircuitOpen {
-    fmt.Println("Service is down, rejecting call immediately without network I/O.")
+if err != nil {
+    fmt.Println("Operation finally failed:", err)
 }
 ```
