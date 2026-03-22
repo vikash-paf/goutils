@@ -1,6 +1,6 @@
 # `cryptox`
 
-The `cryptox` component structures mathematically native boundary limitations simplifying universally highly problematic generic cryptography code historically causing severe operational native leaks inherently securely.
+The `cryptox` package provides simple wrappers for common cryptographic operations like AES-GCM encryption.
 
 ## AES-GCM Encrypt & Decrypt
 

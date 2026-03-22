@@ -35,7 +35,7 @@ func (m *MultiError) HasErrors() bool {
 	return len(m.errors) > 0
 }
 
-// Errors retrieves the underlying inner error array natively.
+// Errors returns the slice of accumulated errors.
 func (m *MultiError) Errors() []error {
 	return m.errors
 }

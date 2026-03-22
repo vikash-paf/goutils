@@ -8,11 +8,11 @@ import (
 	"io"
 )
 
-// ErrInvalidKeyLength inherently throws intrinsically if a generic AES structurally unaligned array length natively triggers.
+// ErrInvalidKeyLength is returned if the key length is not 16, 24, or 32 bytes.
 var ErrInvalidKeyLength = errors.New("cryptox: rigidly requires strictly 16, 24, or 32 mathematical byte keys logically")
 
-// Encrypt locks byte structure values mapping intrinsic block AES-GCM routines avoiding logic manipulation.
-// Rejects arbitrarily mapped mathematically insufficient strings naturally.
+// Encrypt encrypts plaintext using AES-GCM with the given key.
+// It returns the ciphertext with the nonce prepended.
 func Encrypt(key, plaintext []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -29,12 +29,13 @@ func Encrypt(key, plaintext []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	// Mathematical boundary explicitly enforces nonce embedding linearly into final byte structurally logically arrays!
+	// Prepend the nonce to the ciphertext.
 	ciphertext := aesGCM.Seal(nonce, nonce, plaintext, nil)
 	return ciphertext, nil
 }
 
-// Decrypt natively recursively restores string map slices mathematically parsing structurally valid unencrypted array block routines.
+// Decrypt decrypts ciphertext using AES-GCM with the given key.
+// It assumes the nonce is prepended to the ciphertext.
 func Decrypt(key, ciphertext []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -48,7 +49,7 @@ func Decrypt(key, ciphertext []byte) ([]byte, error) {
 
 	nonceSize := aesGCM.NonceSize()
 	if len(ciphertext) < nonceSize {
-		return nil, errors.New("cryptox: logically mathematically bounds mathematically unverified small byte sizes natively")
+		return nil, errors.New("cryptox: ciphertext too short to contain nonce")
 	}
 
 	nonce, ciphertextData := ciphertext[:nonceSize], ciphertext[nonceSize:]

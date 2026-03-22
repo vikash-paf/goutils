@@ -38,13 +38,13 @@ func NewShardedMap[V any](numShards int) *ShardedMap[V] {
 	return sm
 }
 
-// getShard mathematically distributes a key to its specific bucket slice index.
+// getShard returns the shard responsible for the given key.
 func (m *ShardedMap[V]) getShard(key string) *shard[V] {
 	hashed := maphash.String(m.seed, key)
 	return m.shards[hashed%m.numShards]
 }
 
-// Set adds a value to the concurrent dictionary.
+// Set adds or updates a value in the map.
 func (m *ShardedMap[V]) Set(key string, val V) {
 	shard := m.getShard(key)
 	shard.Lock()
@@ -52,7 +52,7 @@ func (m *ShardedMap[V]) Set(key string, val V) {
 	shard.m[key] = val
 }
 
-// Get fetches a key's value, confirming if it exists safely.
+// Get retrieves a value from the map. Returns false if the key doesn't exist.
 func (m *ShardedMap[V]) Get(key string) (V, bool) {
 	shard := m.getShard(key)
 	shard.RLock()
@@ -61,7 +61,7 @@ func (m *ShardedMap[V]) Get(key string) (V, bool) {
 	return val, ok
 }
 
-// Delete removes an item from the partitioned store entirely.
+// Delete removes a key from the map.
 func (m *ShardedMap[V]) Delete(key string) {
 	shard := m.getShard(key)
 	shard.Lock()
@@ -69,8 +69,8 @@ func (m *ShardedMap[V]) Delete(key string) {
 	delete(shard.m, key)
 }
 
-// Len evaluates the exact number of active elements spanning across all discrete shards.
-// It iterates and temporarily locks all shards locally without deadlocks.
+// Len returns the total number of elements in the map.
+// It iterates over all shards and locks them individually.
 func (m *ShardedMap[V]) Len() int {
 	count := 0
 	for _, shard := range m.shards {

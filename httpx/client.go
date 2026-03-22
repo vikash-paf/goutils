@@ -13,8 +13,7 @@ type ClientConfig struct {
 	IdleConnTimeout     time.Duration
 }
 
-// DefaultClientConfig represents safe and aggressive values built natively for typical 
-// REST JSON implementations, rigorously eliminating long-term thread wait leaks structurally.
+// DefaultClientConfig represents safe values for production services.
 var DefaultClientConfig = ClientConfig{
 	Timeout:             10 * time.Second,
 	MaxIdleConns:        100,
@@ -22,8 +21,7 @@ var DefaultClientConfig = ClientConfig{
 	IdleConnTimeout:     90 * time.Second,
 }
 
-// NewSafeClient orchestrates a natively fully-secured core HTTP execution thread structurally optimized 
-// mathematically strictly eliminating infinite thread connection bugs historically typical across generic platforms.
+// NewSafeClient returns a pre-configured http.Client with specific timeouts and transport settings.
 func NewSafeClient(cfg ClientConfig) *http.Client {
 	transport := &http.Transport{
 		MaxIdleConns:        cfg.MaxIdleConns,

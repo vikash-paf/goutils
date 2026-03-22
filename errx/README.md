@@ -1,10 +1,10 @@
 # `errx`
 
-The `errx` package safely dynamically structures multiple logging occurrences intrinsically compactly natively explicitly correctly exactly purely safely naturally cleanly appropriately strictly standard mathematically exactly neatly effectively organically essentially.
+The `errx` package provides utilities for managing and aggregating multiple errors.
 
 ## MultiError
 
-Seamlessly seamlessly organically dynamically gathers explicitly purely structurally seamlessly nicely exactly cleanly natively intrinsically explicitly correctly appropriately standard correctly effectively array appropriately neatly completely precisely natively purely logically safely flawlessly efficiently specifically properly explicitly smoothly explicitly inherently seamlessly optimally optimally.
+Collects multiple errors into a single composite error that satisfies the `error` interface.
 
 ```go
 package main

@@ -10,8 +10,7 @@ type TypedPool[T any] struct {
 }
 
 // NewTypedPool instantiates a dedicated memory pool for exactly one data type.
-// The `newFunc` is triggered mathematically only when the underlying sync.Pool fails to find
-// a readily available object for reuse.
+// The `newFunc` is called when the pool is empty to create a new object.
 func NewTypedPool[T any](newFunc func() T) *TypedPool[T] {
 	return &TypedPool[T]{
 		pool: sync.Pool{
@@ -22,8 +21,8 @@ func NewTypedPool[T any](newFunc func() T) *TypedPool[T] {
 	}
 }
 
-// Get accesses an existing object from the dynamic pool array, avoiding garbage collection creation algorithms.
-// Directly returns the mathematically structured generic type `T`.
+// Get retrieves an object from the pool.
+// It returns a value of type T.
 func (p *TypedPool[T]) Get() T {
 	return p.pool.Get().(T) // Guaranteed to be T since Put() exclusively takes T
 }
