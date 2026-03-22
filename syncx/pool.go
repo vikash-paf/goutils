@@ -33,6 +33,13 @@ func NewPool[Job, Result any](workers int, processor func(Job) Result) *Pool[Job
 		go func() {
 			defer p.wg.Done()
 			for {
+				// Deterministic check before potentially picking up a job
+				select {
+				case <-p.ctx.Done():
+					return
+				default:
+				}
+
 				select {
 				case <-p.ctx.Done():
 					// Context cancelled, exit worker
@@ -59,6 +66,13 @@ func NewPool[Job, Result any](workers int, processor func(Job) Result) *Pool[Job
 
 // Submit adds a job to the pool. It blocks if the job queue is full.
 func (p *Pool[Job, Result]) Submit(job Job) {
+	// Periodic check to ensure we don't submit to a shut down pool
+	select {
+	case <-p.ctx.Done():
+		return
+	default:
+	}
+
 	select {
 	case <-p.ctx.Done():
 		return
