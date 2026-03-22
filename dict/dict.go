@@ -1,6 +1,8 @@
 // Package dict provides generic utility functions for map/dictionary manipulation.
 package dict
 
+import maps "maps"
+
 // Keys returns a slice containing all the keys of the given map.
 // The order of keys is not guaranteed.
 func Keys[K comparable, V any](m map[K]V) []K {
@@ -29,12 +31,10 @@ func Values[K comparable, V any](m map[K]V) []V {
 
 // Merge combines multiple maps into a single map. If duplicate keys exist,
 // the value from the map appearing later in the arguments will overwrite the earlier one.
-func Merge[K comparable, V any](maps ...map[K]V) map[K]V {
+func Merge[K comparable, V any](_maps ...map[K]V) map[K]V {
 	result := make(map[K]V)
-	for _, m := range maps {
-		for k, v := range m {
-			result[k] = v
-		}
+	for _, m := range _maps {
+		maps.Copy(result, m)
 	}
 	return result
 }
