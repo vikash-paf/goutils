@@ -75,7 +75,7 @@ func TestSetSubSuperset(t *testing.T) {
 func ExampleSet() {
 	s := New("apple", "banana")
 	s.Add("cherry")
-	
+
 	if s.Contains("banana") {
 		fmt.Println("Has banana")
 	}

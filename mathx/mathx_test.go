@@ -69,7 +69,7 @@ func ExampleClamp() {
 	val1 := Clamp(-5, 0, 100)
 	val2 := Clamp(50, 0, 100)
 	val3 := Clamp(150, 0, 100)
-	
+
 	fmt.Println(val1, val2, val3)
 	// Output: 0 50 100
 }

@@ -1,6 +1,10 @@
 package slice
 
-import "math/rand"
+import (
+	"cmp"
+	"math/rand"
+	"slices"
+)
 
 // Find searches for the first element in the slice that satisfies the predicate.
 // It returns a pointer to the element if found, or nil if not found.
@@ -55,6 +59,7 @@ func Reverse[T any](items []T) {
 
 // Shuffle randomizes the order of elements in the slice in place.
 func Shuffle[T any](items []T) {
+	// Since Go 1.20, rand automatically seeds.
 	rand.Shuffle(len(items), func(i, j int) {
 		items[i], items[j] = items[j], items[i]
 	})
@@ -83,7 +88,7 @@ func Partition[T any](items []T, predicate func(T) bool) (passed []T, failed []T
 func DiffState[T comparable](old, new []T) (added []T, removed []T) {
 	oldSet := make(map[T]struct{}, len(old))
 	newSet := make(map[T]struct{}, len(new))
-	
+
 	for _, v := range old {
 		oldSet[v] = struct{}{}
 	}
@@ -101,7 +106,7 @@ func DiffState[T comparable](old, new []T) (added []T, removed []T) {
 			added = append(added, v)
 		}
 	}
-	
+
 	if added == nil {
 		added = []T{}
 	}
@@ -120,4 +125,18 @@ func CountBy[T any](items []T, predicate func(T) bool) int {
 		}
 	}
 	return count
+}
+
+// SortBy sorts the slice in place based on the value returned by the selector function in ascending order.
+func SortBy[T any, U cmp.Ordered](items []T, selector func(T) U) {
+	slices.SortFunc(items, func(a, b T) int {
+		return cmp.Compare(selector(a), selector(b))
+	})
+}
+
+// SortByDesc sorts the slice in place based on the value returned by the selector function in descending order.
+func SortByDesc[T any, U cmp.Ordered](items []T, selector func(T) U) {
+	slices.SortFunc(items, func(a, b T) int {
+		return cmp.Compare(selector(b), selector(a))
+	})
 }

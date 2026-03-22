@@ -1,16 +1,16 @@
 # goutils
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/vikash-paf/goutils.svg)](https://pkg.go.dev/github.com/vikash-paf/goutils)
-[![Go Report Card](https://goreportcard.com/badge/github.com/vikash-paf/goutils)](https://goreportcard.com/report/github.com/vikash-paf/goutils)
+[![Go Reference](https://pkg.go.dev/badge/github.com/vikash/goutils.svg)](https://pkg.go.dev/github.com/vikash/goutils)
+[![Go Report Card](https://goreportcard.com/badge/github.com/vikash/goutils)](https://goreportcard.com/report/github.com/vikash/goutils)
 
-`goutils` is a modern, zero-dependency, generic utility library for Go 1.21+. It provides heavily requested functional programming features, pointer manipulation helpers, map utilities, native sets, and string transformers in an idiomatic and typesafe manner.
+`goutils` is a modern, zero-dependency, generic utility library for Go 1.21+. It provides heavily requested functional programming features, pointer manipulation helpers, native data structures (Sets, LRU Cache, Stacks), and concurrency transformers in an idiomatic and typesafe manner.
 
 By leveraging Go generics, `goutils` eliminates the need for reflection, keeping performance high and type safety strong.
 
 ## Installation
 
 ```bash
-go get github.com/vikash-paf/goutils
+go get github.com/vikash/goutils
 ```
 
 ## Packages
@@ -23,12 +23,35 @@ A native, generic Set data structure (`map[T]struct{}`) with standard mathematic
 - `Union`, `Intersection`, `Difference`, `SymmetricDifference`: Core mathematical operations.
 - `IsSubset`, `IsSuperset`: Set comparison.
 
+### `cache`
+A generic, thread-safe Least Recently Used (LRU) Cache.
+- `LRU[K, V]`: Safe for concurrent use via `sync.RWMutex`.
+- `NewLRU`, `Set`, `Get`, `Contains`, `Remove`, `Clear`, `Len`: Manage your cache effortlessly.
+
+### `ds`
+Standard data structures optimized for memory management.
+- `Stack[T]`: LIFO queue (`Push`, `Pop`, `Peek`, `Len`).
+- `Queue[T]`: FIFO queue optimized to prevent memory leaks from continuous slice growth (`Enqueue`, `Dequeue`, `Peek`, `Len`).
+
+### `opt`
+Null-safe Optional types (similar to Rust's `Option`) to avoid pointers and `nil` checks.
+- `Opt[T]`: Value-based wrapper.
+- `Some`, `None`: Constructors.
+- `IsSome`, `IsNone`: State checking.
+- `Unwrap`, `UnwrapOr`, `Map`: Access or transform the value safely.
+
 ### `slice`
 A robust collection of slice manipulation functions.
 - **Search & Logic**: `Find`, `FindIndex`, `Some`, `Every`.
 - **Transformers**: `Map`, `Filter`, `Reduce`, `Chunk`, `Partition`.
-- **Aggregation & Sorting**: `GroupBy`, `CountBy`, `Reverse`, `Shuffle`.
+- **Aggregation & Sorting**: `GroupBy`, `CountBy`, `Reverse`, `Shuffle`, `SortBy`, `SortByDesc`.
 - **Deduplication & State**: `Unique`, `UniqueBy`, `DiffState` (Get added/removed items between two states).
+
+### `syncx`
+Advanced concurrency primitives for workflow control.
+- `Debounce`: Delays invoking a function until a specified quiet period has elapsed.
+- `Throttle`: Ensures a function is called at most once per specified duration.
+- `Batcher[T]`: Collects items and flushes them to a processor either when a size limit is reached or a timeout occurs.
 
 ### `control`
 Flow control and error handling helpers designed to reduce boilerplate.
@@ -68,7 +91,7 @@ String manipulation and formatting utilities.
 - `ToCamelCase`, `ToSnakeCase`: Useful casing transformers.
 
 ### `async`
-Concurrency and async workflow utilities.
+Simple async utilities.
 - `MapAsync`: Perform a parallel map operation over a slice with a maximum concurrency limit.
 - `Retry`, `RetryWithContext`: Attempt operations multiple times with backoff delays.
 

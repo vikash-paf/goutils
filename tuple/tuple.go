@@ -32,7 +32,7 @@ func Unzip[L, R any](pairs []Pair[L, R]) ([]L, []R) {
 	if pairs == nil {
 		return nil, nil
 	}
-	
+
 	lefts := make([]L, len(pairs))
 	rights := make([]R, len(pairs))
 

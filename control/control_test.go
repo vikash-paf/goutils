@@ -21,7 +21,7 @@ func TestMust(t *testing.T) {
 			t.Errorf("Must() did not panic on error")
 		}
 	}()
-	
+
 	// Should not panic
 	val := Must("success", nil)
 	if val != "success" {
@@ -67,7 +67,7 @@ func ExampleIf() {
 func ExampleCoalesce() {
 	var input1, input2 string
 	input3 := "default_value"
-	
+
 	result := Coalesce(input1, input2, input3)
 	fmt.Println(result)
 	// Output: default_value
