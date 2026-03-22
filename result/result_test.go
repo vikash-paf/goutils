@@ -45,6 +45,27 @@ func TestChaining(t *testing.T) {
 	}
 }
 
+func TestMatch(t *testing.T) {
+	// Success
+	Ok(42).Match(func(v int) {
+		if v != 42 {
+			t.Errorf("Match Ok: got %v, want 42", v)
+		}
+	}, func(err error) {
+		t.Errorf("Match Ok: should not call onErr")
+	})
+
+	// Error
+	err := errors.New("fail")
+	Err[int](err).Match(func(v int) {
+		t.Errorf("Match Err: should not call onOk")
+	}, func(e error) {
+		if e != err {
+			t.Errorf("Match Err: got %v, want %v", e, err)
+		}
+	})
+}
+
 func ExampleResult() {
 	divide := func(a, b float64) Result[float64] {
 		if b == 0 {

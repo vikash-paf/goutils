@@ -68,3 +68,12 @@ func AndThen[T, U any](r Result[T], fn func(T) Result[U]) Result[U] {
 	}
 	return fn(r.value)
 }
+
+// Match executes onOk if the result is successful, otherwise executes onErr.
+func (r Result[T]) Match(onOk func(T), onErr func(error)) {
+	if r.err != nil {
+		onErr(r.err)
+		return
+	}
+	onOk(r.value)
+}
