@@ -21,9 +21,8 @@ func MapAsync[T, U any](items []T, iteratee func(T) U, maxConcurrency int) []U {
 	if items == nil {
 		return nil
 	}
-	if maxConcurrency <= 0 {
-		maxConcurrency = 1
-	}
+
+	maxConcurrency = max(1, maxConcurrency)
 
 	result := make([]U, len(items))
 	var wg sync.WaitGroup
