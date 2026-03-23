@@ -1,4 +1,4 @@
-// Package goutils is a modern, zero-dependency, generic utility library for Go 1.21+.
+// Package goutils is a modern, zero-dependency, generic utility library for Go 1.23+.
 //
 // It provides highly-tested, idiomatic utilities for collections, synchronization,
 // error handling, and data structures, designed to eliminate boilerplate in Go projects.
