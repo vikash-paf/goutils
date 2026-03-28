@@ -25,10 +25,10 @@ func ExampleLFU() {
 	c := cache.NewLFU[string, int](2)
 	c.Set("alice", 30)
 	c.Set("bob", 25)
-	
+
 	// Access "alice" to increase frequency
 	c.Get("alice")
-	
+
 	c.Set("charlie", 28) // Evicts "bob" because it has lower frequency
 
 	_, ok := c.Get("bob")

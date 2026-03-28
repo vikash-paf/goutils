@@ -41,7 +41,7 @@ func TestPubSub_NonBlocking(t *testing.T) {
 	defer ps.Close()
 
 	// Zero buffer size forces dropping if consumer isn't perfectly synchronized
-	ch1 := ps.Subscribe(0) 
+	ch1 := ps.Subscribe(0)
 	ch2 := ps.Subscribe(10)
 
 	var wg sync.WaitGroup
@@ -60,7 +60,7 @@ func TestPubSub_NonBlocking(t *testing.T) {
 		t.Errorf("expected ch2 to get message, got %d", msg2)
 	}
 	wg.Wait()
-	
+
 	// Ensure ch1 is indeed empty/didn't receive it because we didn't wait
 	select {
 	case <-ch1:

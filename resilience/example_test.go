@@ -10,11 +10,11 @@ import (
 
 func ExampleCircuitBreaker() {
 	cb := resilience.NewCircuitBreaker(2, 100*time.Millisecond)
-	
+
 	// First two failures
 	_ = cb.Execute(func() error { return errors.New("fail") })
 	_ = cb.Execute(func() error { return errors.New("fail") })
-	
+
 	// Third call should be rejected or return the failure
 	err := cb.Execute(func() error { return nil })
 	fmt.Println(err == resilience.ErrCircuitOpen)

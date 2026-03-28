@@ -3,8 +3,8 @@ package cronx_test
 import (
 	"context"
 	"fmt"
-	"time"
 	"github.com/vikash-paf/goutils/cronx"
+	"time"
 )
 
 func ExampleEvery() {

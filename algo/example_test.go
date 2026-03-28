@@ -2,8 +2,8 @@ package algo_test
 
 import (
 	"fmt"
-	"sort"
 	"github.com/vikash-paf/goutils/algo"
+	"sort"
 )
 
 func ExampleTopK() {

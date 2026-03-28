@@ -12,7 +12,7 @@ func ExampleTypedPool() {
 
 	buf := p.Get()
 	fmt.Println(len(buf))
-	
+
 	p.Put(buf)
 	// Output: 1024
 }
