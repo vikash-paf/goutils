@@ -82,6 +82,18 @@ Time manipulation extensions.
 - `StartOfDay`, `EndOfDay`, `StartOfWeek`.
 - `IsWeekend`, `IsWeekday`, `AddBusinessDays`.
 
+## Development
+
+### Git Hooks
+
+This project uses git hooks to ensure code quality. To set up the hooks, run:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The `pre-commit` hook automatically runs `gofmt -s -w` on staged Go files to ensure consistent formatting.
+
 ## License
 
 MIT License. See [LICENSE](LICENSE) for more details.

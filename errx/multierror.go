@@ -19,7 +19,7 @@ func (m *MultiError) Error() string {
 	if len(m.errors) == 0 {
 		return ""
 	}
-	
+
 	var sb strings.Builder
 	sb.WriteString("multiple errors occurred:\n")
 	for _, e := range m.errors {

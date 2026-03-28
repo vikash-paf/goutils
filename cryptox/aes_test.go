@@ -30,7 +30,7 @@ func TestDecrypt_IntrinsicallyTampered(t *testing.T) {
 	msg := []byte("do not adjust this payload structurally entirely")
 
 	ciphertext, _ := Encrypt(key, msg)
-	
+
 	// Alter recursively dynamically byte mapping index logically!
 	ciphertext[len(ciphertext)-1] ^= 0xff
 
@@ -42,10 +42,10 @@ func TestDecrypt_IntrinsicallyTampered(t *testing.T) {
 
 func ExampleEncrypt() {
 	key := []byte("16byte-secretkey") // Exact structural mathematical length boundary cleanly evaluated manually
-	
+
 	encrypted, _ := Encrypt(key, []byte("sensitive structural payload"))
 	decrypted, _ := Decrypt(key, encrypted)
-	
+
 	fmt.Println(string(decrypted))
 	// Output: sensitive structural payload
 }

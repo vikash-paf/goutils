@@ -23,7 +23,7 @@ func (ps *PubSub[T]) Subscribe(bufferSize int) chan T {
 	ch := make(chan T, bufferSize)
 	ps.mu.Lock()
 	defer ps.mu.Unlock()
-	
+
 	ps.subscribers[ch] = struct{}{}
 	return ch
 }

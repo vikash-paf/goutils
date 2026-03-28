@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"time"
 	"github.com/vikash-paf/goutils/async"
+	"time"
 )
 
 func ExampleMapAsync() {

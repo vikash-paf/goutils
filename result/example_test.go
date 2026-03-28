@@ -9,7 +9,7 @@ import (
 func ExampleResult_UnwrapOr() {
 	r1 := result.Ok(42)
 	r2 := result.Err[int](errors.New("fail"))
-	
+
 	fmt.Println(r1.UnwrapOr(0))
 	fmt.Println(r2.UnwrapOr(0))
 	// Output:

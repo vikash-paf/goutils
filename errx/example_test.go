@@ -10,7 +10,7 @@ func ExampleMultiError() {
 	m := &errx.MultiError{}
 	m.Append(errors.New("error 1"))
 	m.Append(errors.New("error 2"))
-	
+
 	if err := m.AsError(); err != nil {
 		fmt.Println(m.HasErrors())
 	}

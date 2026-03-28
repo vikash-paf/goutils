@@ -35,4 +35,3 @@ func TestFsx(t *testing.T) {
 		t.Errorf("Read lines mismatch: %v", readLines)
 	}
 }
-
